@@ -1,0 +1,19 @@
+#!/bin/bash
+
+FILES=$(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g')
+[ -z "$FILES" ] && exit 0
+
+if [[ "$FILES" == *"composer.json"* ]]; then
+  echo "composer.json changed, normalizing..."
+  docker compose exec -T app composer normalize
+fi
+
+PHP_FILES=$(echo "$FILES" | grep -E '\.php$')
+if [ ${#PHP_FILES} -gt 0 ]; then
+  echo "PHP files changed, linting..."
+  docker compose exec -T app ./vendor/bin/pint --dirty
+fi
+
+echo "$FILES" | xargs git add
+
+exit 0
