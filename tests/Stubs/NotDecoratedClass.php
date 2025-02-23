@@ -2,10 +2,10 @@
 
 namespace Dorayaki4369\Decoravel\Tests\Stubs;
 
-class FakeService
+class NotDecoratedClass
 {
     public function handle(): string
     {
-        return FakeService::class;
+        return NotDecoratedClass::class;
     }
 }

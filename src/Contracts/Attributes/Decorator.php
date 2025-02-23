@@ -7,7 +7,7 @@ interface Decorator
     /**
      * Decorate the next callable.
      *
-     * @param  callable(array $args, object $decoratable, string $method, callable $next): mixed  $next
+     * @param  callable(callable $next, array $args, object $instance, string $method): mixed  $next
      */
-    public function decorate(array $args, object $decoratable, string $method, callable $next): mixed;
+    public function decorate(callable $next, array $args, object $instance, string $method): mixed;
 }

@@ -9,6 +9,7 @@ use RuntimeException;
 /**
  * @method static string[] scanDecoratableClasses()
  * @method static mixed decorate(string $class)
+ * @method static mixed handle(object $instance, string $method, array $args)
  */
 class Decoravel extends Facade
 {

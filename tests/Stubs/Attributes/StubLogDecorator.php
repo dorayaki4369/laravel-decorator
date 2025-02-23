@@ -1,19 +1,19 @@
 <?php
 
-namespace Dorayaki4369\Decoravel\Tests\Stubs;
+namespace Dorayaki4369\Decoravel\Tests\Stubs\Attributes;
 
 use Attribute;
 use Dorayaki4369\Decoravel\Contracts\Attributes\Decorator;
 use Illuminate\Support\Facades\Log;
 
 #[Attribute(Attribute::TARGET_METHOD)]
-class StubDecorator implements Decorator
+class StubLogDecorator implements Decorator
 {
-    public function decorate(array $args, object $decoratable, string $method, callable $next): mixed
+    public function decorate(callable $next, array $args, object $instance, string $method): mixed
     {
         Log::log('info', 'StubDecorator is called');
 
-        $result = $next($args, $decoratable, $method);
+        $result = $next($args, $instance, $method);
 
         Log::log('info', 'StubDecorator is finished');
 

@@ -26,7 +26,10 @@
     "autoload": {
         "psr-4": {
             "Dorayaki4369\\Decoravel\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

@@ -1,4 +1,5 @@
 # IDEA files
+.idea/git_toolbox_prj.xml
 .idea/git_toolbox_blame.xml
 .idea/laravel-idea.xml
 .idea/laravel-idea-personal.xml
