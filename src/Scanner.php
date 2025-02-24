@@ -24,6 +24,10 @@ class Scanner
                     return null;
                 }
 
+                if (count(getDecoratedMethods($ref)) === 0) {
+                    return null;
+                }
+
                 return $class;
             } catch (ReflectionException) {
                 return null;
