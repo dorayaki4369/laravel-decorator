@@ -3,7 +3,7 @@
   "description": "The decorator package for Laravel",
   "license": "MIT",
   "type": "library",
-  "tags": [
+  "keywords": [
     "laravel",
     "decorator"
   ],
