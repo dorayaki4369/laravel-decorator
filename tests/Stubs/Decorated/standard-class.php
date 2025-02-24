@@ -12,6 +12,16 @@ return new class extends \Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets\Stan
         return \Dorayaki4369\LaravelDecorator\Facades\Decorator::handle($this, __FUNCTION__, []);
     }
 
+    public function voidMethod()
+    {
+        \Dorayaki4369\LaravelDecorator\Facades\Decorator::handle($this, __FUNCTION__, []);
+    }
+
+    public function voidMethodWithType(): void
+    {
+        \Dorayaki4369\LaravelDecorator\Facades\Decorator::handle($this, __FUNCTION__, []);
+    }
+
     public function methodWithArgs(
         int $a,
         string $b,

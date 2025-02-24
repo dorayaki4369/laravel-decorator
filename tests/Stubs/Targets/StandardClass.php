@@ -11,7 +11,7 @@ use JsonSerializable;
 class StandardClass
 {
     #[StubLogDecorator]
-    function nonModifierMethod(): string
+    public function nonModifierMethod(): string
     {
         return self::class;
     }
@@ -21,6 +21,12 @@ class StandardClass
     {
         return app();
     }
+
+    #[StubLogDecorator]
+    public function voidMethod() {}
+
+    #[StubLogDecorator]
+    public function voidMethodWithType(): void {}
 
     #[StubLogDecorator]
     public function methodWithArgs(

@@ -279,7 +279,7 @@ readonly class InstanceFactory
         return new Node\UnionType($types);
     }
 
-    protected function createDecoratedMethodReturnStmt(ReflectionMethod $ref): Node\Stmt\Return_
+    protected function createDecoratedMethodReturnStmt(ReflectionMethod $ref): Node\Stmt\Return_|Node\Expr\StaticCall
     {
         $args = [
             new Node\Arg(new Node\Expr\Variable('this')),
@@ -305,12 +305,18 @@ readonly class InstanceFactory
             $args[] = new Node\Arg(new Node\Expr\Array_);
         }
 
-        return new Node\Stmt\Return_(
-            new Node\Expr\StaticCall(
-                new Node\Name\FullyQualified(LaravelDecoratorFacade::class),
-                'handle',
-                $args,
-            )
+        $staticCall = new Node\Expr\StaticCall(
+            new Node\Name\FullyQualified(LaravelDecoratorFacade::class),
+            'handle',
+            $args,
         );
+
+        $returnType = $ref->getReturnType();
+        $isVoid = $returnType === null || ($returnType instanceof ReflectionNamedType && $returnType->getName() === 'void');
+        if ($isVoid) {
+            return $staticCall;
+        }
+
+        return new Node\Stmt\Return_($staticCall);
     }
 }
