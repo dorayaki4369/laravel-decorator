@@ -13,7 +13,7 @@ class StubLogDecorator implements Decorator
     {
         Log::log('info', "$parentClass::$method is called");
 
-        $result = $next($args, $instance, $method);
+        $result = $next($args, $instance, $parentClass, $method);
 
         Log::log('info', "$parentClass::$method is finished");
 

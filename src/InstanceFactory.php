@@ -28,7 +28,8 @@ readonly class InstanceFactory
     }
 
     /**
-     * @param class-string $class
+     * @template T
+     * @param class-string<T> $class
      *
      * @throws BindingResolutionException
      * @throws ReflectionException

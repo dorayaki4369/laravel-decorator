@@ -35,7 +35,7 @@ class DecoravelServiceProvider extends ServiceProvider
 
     protected function bindDecoratables(): void
     {
-        foreach (DecoravelFacade::scanDecoratableClasses() as $class) {
+        foreach (DecoravelFacade::scanDecoratedClasses() as $class) {
             $this->app->bind($class, fn () => DecoravelFacade::decorate($class));
         }
     }
