@@ -1,42 +1,37 @@
 # Laravel Decorator
 
-The helper functions for decorator pattern in Laravel.
-
 This package provides a simple way to implement the decorator pattern in Laravel.
 
 ## Installation
 
-Please install the package via composer.
+Require this package with composer using the following command:
 
 ```bash
 composer require dorayaki4369/laravel-decorator
 ```
 
-After installing, your Laravel application will be load the `Dorayaki4369\\LaravelDecorator\\LaravelDecoratorServiceProvider` automatically.
-
 ## Usage
 
 ### 1. Create a decorator
 
-You can create a decorator by extending the `Dorayaki4369\LaravelDecorator\Decorator` class.
+You can create a decorator by implementing the `Dorayaki4369\LaravelDecorator\Contracts\Attributes\Decorator` interface.
 
-The decorator class is a similar to [middleware](https://laravel.com/docs/11.x/middleware).
-It has a `decorate` method that receives the arguments, the instance, the method name, and the next callable.
+The decorator class must implement the `decorate` method.
+the method is a similar to `handle` method of [Middleware](https://laravel.com/docs/11.x/middleware).
 
 ```php
-
 namespace App\Attributes;
 
 use Dorayaki4369\LaravelDecorator\Contracts\Attributes\Decorator;
 
 class LogDecorator extends Decorator
 {
-    public function decorate(callable $next, array $args, object $instance, string $method): mixed
+    public function decorate(callable $next, array $args, object $instance, string $parentClass, string $method): mixed
     {
         // Before the method is called
         \Illuminate\Support\Facades\Log::debug('Before the method is called');
         
-        $result = $next($args);
+        $result = $next($args, $instance, $parentClass, $method);
         
         // After the method is called
         \Illuminate\Support\Facades\Log::debug('After the method is called');
@@ -49,7 +44,13 @@ class LogDecorator extends Decorator
 ### 2. Apply the decorator
 
 You can apply the decorator to a method.
-The target class must not be a final class and when you using php 8.1 or earlier, the class must not be a readonly class.
+The applicable classes and methods must meet the following conditions:
+
+1. The target class must be instantiable from the service container.
+2. The target class or method must not be final.
+3. The target method must be public.
+4. The target method must not be a static method.
+5. When you using php 8.3 or earlier, the target class must not be a readonly class.
 
 ```php
 namespace App\Services;
@@ -74,7 +75,7 @@ class MyService
 }
 ```
 
-If you want to multiple decorators, decorate the method with multiple attributes.
+You can apply multiple decorators to a method.
 The applied decorators are executed in the order of the attributes.
 
 ```php
@@ -85,6 +86,13 @@ use App\Attributes\CacheDecorator;
 
 class MyService
 {
+    public function __constructor(
+        // You can define the constructor but the constructor's arguments must be able to resolve from the service container.
+        public readonly Application $app,
+    )
+    {   
+    }
+
     #[LogDecorator]
     #[CacheDecorator] // the CacheDecorator will be executed after the LogDecorator
     public function handle(int $value1, int $value2): int
@@ -96,7 +104,7 @@ class MyService
 
 ### 3. Call the method
 
-You can call the method as usual, but the decorated class must be resolved from the service container.
+You can call the method as usual.
 
 ```php
 namespace App\Http\Controllers;
@@ -107,30 +115,112 @@ class HomeController
 {
     public function index(MyService $service): int
     {
-        return $service->handle(1, 2); // When this line is executed, the log will be output.
+        return $service->handle(1, 2); // When this line is executed, the LogDecorator and CacheDecorator decorators are executed in order before and after the function.
+    }
+}
+```
+
+## Default decorators
+
+This package already implements some commonly used decorators.
+
+### `DBTransactionDecorator`
+
+This decorator wraps the method in a database transaction.
+If an exception is thrown, the transaction is rolled back.
+
+```php
+namespace App\Services;
+
+use Dorayaki4369\LaravelDecorator\Attributes\DBTransactionDecorator;
+use App\Models\User;
+
+class UserHandler
+{
+    #[DBTransactionDecorator]
+    public function handle(array $attributes): User
+    {
+        User::create($attributes);
+    }
+}
+```
+
+### `SimpleCacheDecorator`
+
+This decorator caches the result of the method.
+
+At execution time, a cache key is created from the class name, method name, and arguments, and the execution results are cached.
+If the same condition is executed from the second time onwards, the cached results will be returned.
+
+```php
+namespace App\Services;
+
+use Dorayaki4369\LaravelDecorator\Attributes\SimpleCacheDecorator;
+use App\Models\User;
+
+class UserHandler
+{
+    #[SimpleCacheDecorator]
+    public function handle(string $name): User
+    {
+        return User::where('name', $name)->first();
+    }
+}
+```
+
+### `ValidationDecorator`
+
+This decorator validates the arguments of the method by [Validation](https://laravel.com/docs/11.x/validation);
+
+```php
+namespace App\Services;
+
+use Dorayaki4369\LaravelDecorator\Attributes\ValidationDecorator;
+use App\Models\User;
+
+class UserHandler
+{
+    #[ValidationDecorator([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255'],
+    ])]
+    public function handle(array $attributes): User
+    {
+        return User::create($attributes);
     }
 }
 ```
 
 ## How it works in the background
 
-This package generates an anonymous class that extends a target class and overrides the decorated methods when the target class resolving from the service container.
-The reason why it is not possible to decorate against a final class is due to the specification that this anonymous class inherits from the target class.
-Also, readonly anonymous classes are a feature of PHP 8.2 or later, so earlier versions of PHP will not work.
+To provide the easiest and simplest decorator functionality, this package generates an anonymous class that overrides the decorated method when the target class is instantiated from the service container.
+The reason there are some conditions on the class that can be decorated is because this anonymous class inherits from the target class.
+Read-only anonymous classes are a PHP 8.3 and later feature, so they will not work in earlier versions of PHP.
 
 For example, the `MyService` class resolving from the service container, the package generates the following anonymous class.
 
 ```php
-return new class extends \App\Services\MyService {
-    public function __construct(
-        \Illuminate\Contracts\Foundation\Application $app
-    ) {
-        parent::__construct($app);
-    }
-    
+$method = (new \ReflectionClass(\Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets\InjectionRequiredClass::class))->getConstructor();
+if ($method === null) {
+    $args = [];
+} else {
+    $args = array_map(function ($p) {
+        $class = $p->getType()?->getName();
+
+        return $class ? app($class) : null;
+    }, $method->getParameters());
+}
+
+return new class(...$args) extends \App\Services\MyService {
     public function handle(int $value1, int $value2): int
     {   
-        return \Dorayaki4369\LaravelDecorator\Facades\Decorator::handle($this, 'handle', $value1, $value2);
+        return \Dorayaki4369\LaravelDecorator\Facades\Decorator::handle($this, __FUNCTION__, [$value1, $value2]);
     }
 }
 ```
+
+If you want to more specification of decorated class, You can find out in [the Package's test codes](https://github.com/dorayaki4369/decoravel/tree/main/tests).
+
+## License
+
+The Laravel Decorator is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
