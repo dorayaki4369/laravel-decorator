@@ -11,10 +11,10 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/support": "^11.41",
-        "symfony/finder": "^7.2",
         "composer/class-map-generator": "^1.5",
-        "nikic/php-parser": "^5.4"
+        "illuminate/support": "^11.41",
+        "nikic/php-parser": "^5.4",
+        "symfony/finder": "^7.2"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.45",
@@ -40,5 +40,10 @@
         "allow-plugins": {
             "ergebnis/composer-normalize": true
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "git config core.hooksPath .githooks"
+        ]
     }
 }
