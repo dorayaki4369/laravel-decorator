@@ -1,8 +1,8 @@
 <?php
 
-namespace Dorayaki4369\Decoravel;
+namespace Dorayaki4369\LaravelDecorator;
 
-use Dorayaki4369\Decoravel\Contracts\Attributes\Decorator;
+use Dorayaki4369\LaravelDecorator\Contracts\Attributes\Decorator;
 use ReflectionAttribute;
 use ReflectionClass;
 use ReflectionException;
@@ -13,14 +13,14 @@ readonly class DecoratorHandler
     /**
      * Run the decorated method.
      *
-     * @throws DecoravelException
+     * @throws LaravelDecoratorException
      * @throws ReflectionException
      */
     public function handle(object $instance, string $method, array $args): mixed
     {
         $parent = (new ReflectionClass($instance))->getParentClass();
         if ($parent === false) {
-            throw new DecoravelException('Parent class not found');
+            throw new LaravelDecoratorException('Parent class not found');
         }
 
         $parentMethod = $parent->getMethod($method);

@@ -1,8 +1,8 @@
 <?php
 
-namespace Dorayaki4369\Decoravel\Tests\Stubs;
+namespace Dorayaki4369\LaravelDecorator\Tests\Stubs;
 
-use Dorayaki4369\Decoravel\Tests\Stubs\Attributes\StubLogDecorator;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\Attributes\StubLogDecorator;
 
 trait TraitClass
 {

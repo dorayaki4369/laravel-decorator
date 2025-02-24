@@ -1,12 +1,12 @@
 <?php
 
-namespace Dorayaki4369\Decoravel\Tests;
+namespace Dorayaki4369\LaravelDecorator\Tests;
 
-use Dorayaki4369\Decoravel\DecoratorHandler;
-use Dorayaki4369\Decoravel\Tests\Stubs\Targets\ExtendedClass;
-use Dorayaki4369\Decoravel\Tests\Stubs\Targets\InjectionRequiredClass;
-use Dorayaki4369\Decoravel\Tests\Stubs\Targets\ReadonlyClass;
-use Dorayaki4369\Decoravel\Tests\Stubs\Targets\StandardClass;
+use Dorayaki4369\LaravelDecorator\DecoratorHandler;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets\ExtendedClass;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets\InjectionRequiredClass;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets\ReadonlyClass;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets\StandardClass;
 use Generator;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Collection;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Dorayaki4369\Decoravel\Facades;
+namespace Dorayaki4369\LaravelDecorator\Facades;
 
-use Dorayaki4369\Decoravel\Decoravel as Concrete;
+use Dorayaki4369\LaravelDecorator\Decorator as Concrete;
 use Illuminate\Support\Facades\Facade;
 use RuntimeException;
 
@@ -11,7 +11,7 @@ use RuntimeException;
  * @method static mixed decorate(string $class)
  * @method static mixed handle(object $instance, string $method, array $args)
  */
-class Decoravel extends Facade
+class Decorator extends Facade
 {
     /**
      * Get the registered name of the component.

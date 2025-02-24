@@ -1,11 +1,11 @@
 <?php
 
-namespace Dorayaki4369\Decoravel;
+namespace Dorayaki4369\LaravelDecorator;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
 use ReflectionException;
 
-readonly class Decoravel
+readonly class Decorator
 {
     public function __construct(
         protected Scanner $scanner,
@@ -14,7 +14,7 @@ readonly class Decoravel
     ) {}
 
     /**
-     * Scan classes that are decorated by Decoravel.
+     * Scan classes that are decorated by LaravelDecorator.
      *
      * @return class-string[]
      */
@@ -38,7 +38,7 @@ readonly class Decoravel
     }
 
     /**
-     * @throws DecoravelException
+     * @throws LaravelDecoratorException
      * @throws ReflectionException
      */
     public function handle(object $instance, string $method, array $args): mixed

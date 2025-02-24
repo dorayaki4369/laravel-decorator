@@ -1,8 +1,8 @@
 <?php
 
-namespace Dorayaki4369\Decoravel;
+namespace Dorayaki4369\LaravelDecorator;
 
-use Dorayaki4369\Decoravel\Facades\Decoravel as DecoravelFacade;
+use Dorayaki4369\LaravelDecorator\Facades\Decorator as LaravelDecoratorFacade;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use PhpParser\Builder;
 use PhpParser\BuilderFactory;
@@ -307,7 +307,7 @@ readonly class InstanceFactory
 
         return new Node\Stmt\Return_(
             new Node\Expr\StaticCall(
-                new Node\Name\FullyQualified(DecoravelFacade::class),
+                new Node\Name\FullyQualified(LaravelDecoratorFacade::class),
                 'handle',
                 $args,
             )

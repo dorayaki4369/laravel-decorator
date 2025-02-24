@@ -1,11 +1,11 @@
 <?php
 
-namespace Dorayaki4369\Decoravel;
+namespace Dorayaki4369\LaravelDecorator;
 
-use Dorayaki4369\Decoravel\Facades\Decoravel as DecoravelFacade;
+use Dorayaki4369\LaravelDecorator\Facades\Decorator as LaravelDecoratorFacade;
 use Illuminate\Support\ServiceProvider;
 
-class DecoravelServiceProvider extends ServiceProvider
+class LaravelDecoratorServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -14,7 +14,7 @@ class DecoravelServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/decoravel.php', 'decoravel');
 
-        $this->app->singleton(DecoravelFacade::class, Decoravel::class);
+        $this->app->singleton(LaravelDecoratorFacade::class, Decorator::class);
     }
 
     /**
@@ -44,8 +44,8 @@ class DecoravelServiceProvider extends ServiceProvider
 
     protected function bindDecoratedClasses(): void
     {
-        foreach (DecoravelFacade::scanDecoratedClasses() as $class) {
-            $this->app->bind($class, fn () => DecoravelFacade::decorate($class));
+        foreach (LaravelDecoratorFacade::scanDecoratedClasses() as $class) {
+            $this->app->bind($class, fn () => LaravelDecoratorFacade::decorate($class));
         }
     }
 }

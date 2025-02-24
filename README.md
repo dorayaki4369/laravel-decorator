@@ -1,4 +1,4 @@
-# decoravel
+# Laravel Decorator
 
 The helper functions for decorator pattern in Laravel.
 
@@ -9,16 +9,16 @@ This package provides a simple way to implement the decorator pattern in Laravel
 Please install the package via composer.
 
 ```bash
-composer require dorayaki4369/decoravel
+composer require dorayaki4369/laravel-decorator
 ```
 
-After installing, your Laravel application will be load the `Dorayaki4369\\Decoravel\\DecoravelServiceProvider` automatically.
+After installing, your Laravel application will be load the `Dorayaki4369\\LaravelDecorator\\LaravelDecoratorServiceProvider` automatically.
 
 ## Usage
 
 ### 1. Create a decorator
 
-You can create a decorator by extending the `Dorayaki4369\Decoravel\Decorator` class.
+You can create a decorator by extending the `Dorayaki4369\LaravelDecorator\Decorator` class.
 
 The decorator class is a similar to [middleware](https://laravel.com/docs/11.x/middleware).
 It has a `decorate` method that receives the arguments, the instance, the method name, and the next callable.
@@ -27,7 +27,7 @@ It has a `decorate` method that receives the arguments, the instance, the method
 
 namespace App\Attributes;
 
-use Dorayaki4369\Decoravel\Decorator;
+use Dorayaki4369\LaravelDecorator\Contracts\Attributes\Decorator;
 
 class LogDecorator extends Decorator
 {
@@ -130,7 +130,7 @@ return new class extends \App\Services\MyService {
     
     public function handle(int $value1, int $value2): int
     {   
-        return \Dorayaki4369\Decoravel\Facades\Decoravel::handle($this, 'handle', $value1, $value2);
+        return \Dorayaki4369\LaravelDecorator\Facades\Decorator::handle($this, 'handle', $value1, $value2);
     }
 }
 ```

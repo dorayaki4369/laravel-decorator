@@ -1,14 +1,14 @@
 <?php
 
-namespace Dorayaki4369\Decoravel\Tests;
+namespace Dorayaki4369\LaravelDecorator\Tests;
 
-use Dorayaki4369\Decoravel\Decoravel;
-use Dorayaki4369\Decoravel\Facades\Decoravel as Facade;
+use Dorayaki4369\LaravelDecorator\Decorator;
+use Dorayaki4369\LaravelDecorator\Facades\Decorator as Facade;
 
 class FacadeTest extends TestCase
 {
     public function test_binding(): void
     {
-        $this->assertInstanceOf(Decoravel::class, Facade::getFacadeRoot());
+        $this->assertInstanceOf(Decorator::class, Facade::getFacadeRoot());
     }
 }

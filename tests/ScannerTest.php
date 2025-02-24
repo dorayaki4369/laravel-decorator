@@ -1,12 +1,12 @@
 <?php
 
-namespace Dorayaki4369\Decoravel\Tests;
+namespace Dorayaki4369\LaravelDecorator\Tests;
 
-use Dorayaki4369\Decoravel\Scanner;
-use Dorayaki4369\Decoravel\Tests\Stubs\Targets\ExtendedClass;
-use Dorayaki4369\Decoravel\Tests\Stubs\Targets\InjectionRequiredClass;
-use Dorayaki4369\Decoravel\Tests\Stubs\Targets\ReadonlyClass;
-use Dorayaki4369\Decoravel\Tests\Stubs\Targets\StandardClass;
+use Dorayaki4369\LaravelDecorator\Scanner;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets\ExtendedClass;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets\InjectionRequiredClass;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets\ReadonlyClass;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets\StandardClass;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Scanner::class)]

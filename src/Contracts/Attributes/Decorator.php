@@ -1,6 +1,6 @@
 <?php
 
-namespace Dorayaki4369\Decoravel\Contracts\Attributes;
+namespace Dorayaki4369\LaravelDecorator\Contracts\Attributes;
 
 interface Decorator
 {

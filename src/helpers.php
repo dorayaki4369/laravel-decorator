@@ -1,6 +1,6 @@
 <?php
 
-use Dorayaki4369\Decoravel\Contracts\Attributes\Decorator;
+use Dorayaki4369\LaravelDecorator\Contracts\Attributes\Decorator;
 
 /**
  * Find all decorated methods in the given class.

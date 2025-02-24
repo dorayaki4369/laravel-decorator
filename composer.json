@@ -1,5 +1,5 @@
 {
-  "name": "dorayaki4369/decoravel",
+  "name": "dorayaki4369/laravel-decorator",
   "description": "The decorator package for Laravel",
   "license": "MIT",
   "type": "library",
@@ -25,7 +25,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Dorayaki4369\\Decoravel\\": "src/"
+      "Dorayaki4369\\LaravelDecorator\\": "src/"
     },
     "files": [
       "src/helpers.php"
@@ -33,7 +33,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Dorayaki4369\\Decoravel\\Tests\\": "tests/"
+      "Dorayaki4369\\LaravelDecorator\\Tests\\": "tests/"
     }
   },
   "config": {

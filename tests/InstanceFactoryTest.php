@@ -2,17 +2,17 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace Dorayaki4369\Decoravel\Tests;
+namespace Dorayaki4369\LaravelDecorator\Tests;
 
-use Dorayaki4369\Decoravel\InstanceFactory;
-use Dorayaki4369\Decoravel\Tests\Stubs\AbstractClass;
-use Dorayaki4369\Decoravel\Tests\Stubs\FinalClass;
-use Dorayaki4369\Decoravel\Tests\Stubs\InterfaceClass;
-use Dorayaki4369\Decoravel\Tests\Stubs\NotDecoratedClass;
-use Dorayaki4369\Decoravel\Tests\Stubs\Targets\InjectionRequiredClass;
-use Dorayaki4369\Decoravel\Tests\Stubs\Targets\ReadonlyClass;
-use Dorayaki4369\Decoravel\Tests\Stubs\Targets\StandardClass;
-use Dorayaki4369\Decoravel\Tests\Stubs\TraitClass;
+use Dorayaki4369\LaravelDecorator\InstanceFactory;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\AbstractClass;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\FinalClass;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\InterfaceClass;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\NotDecoratedClass;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets\InjectionRequiredClass;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets\ReadonlyClass;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets\StandardClass;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\TraitClass;
 use Generator;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use PhpParser\ParserFactory;

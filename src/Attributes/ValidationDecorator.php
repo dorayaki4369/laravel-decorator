@@ -1,8 +1,8 @@
 <?php
 
-namespace Dorayaki4369\Decoravel\Attributes;
+namespace Dorayaki4369\LaravelDecorator\Attributes;
 
-use Dorayaki4369\Decoravel\Contracts\Attributes\Decorator;
+use Dorayaki4369\LaravelDecorator\Contracts\Attributes\Decorator;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 

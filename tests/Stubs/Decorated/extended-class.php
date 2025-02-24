@@ -1,9 +1,9 @@
 <?php
 
-return new class extends \Dorayaki4369\Decoravel\Tests\Stubs\Targets\ExtendedClass
+return new class extends \Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets\ExtendedClass
 {
     public function nonModifierMethod(): string
     {
-        return \Dorayaki4369\Decoravel\Facades\Decoravel::handle($this, __FUNCTION__, []);
+        return \Dorayaki4369\LaravelDecorator\Facades\Decorator::handle($this, __FUNCTION__, []);
     }
 };

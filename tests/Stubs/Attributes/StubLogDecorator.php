@@ -1,9 +1,9 @@
 <?php
 
-namespace Dorayaki4369\Decoravel\Tests\Stubs\Attributes;
+namespace Dorayaki4369\LaravelDecorator\Tests\Stubs\Attributes;
 
 use Attribute;
-use Dorayaki4369\Decoravel\Contracts\Attributes\Decorator;
+use Dorayaki4369\LaravelDecorator\Contracts\Attributes\Decorator;
 use Illuminate\Support\Facades\Log;
 
 #[Attribute(Attribute::TARGET_METHOD)]

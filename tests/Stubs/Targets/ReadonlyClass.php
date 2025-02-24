@@ -1,8 +1,8 @@
 <?php
 
-namespace Dorayaki4369\Decoravel\Tests\Stubs\Targets;
+namespace Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets;
 
-use Dorayaki4369\Decoravel\Tests\Stubs\Attributes\StubLogDecorator;
+use Dorayaki4369\LaravelDecorator\Tests\Stubs\Attributes\StubLogDecorator;
 
 readonly class ReadonlyClass
 {

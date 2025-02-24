@@ -1,6 +1,6 @@
 <?php
 
-namespace Dorayaki4369\Decoravel\Tests\Stubs\Targets;
+namespace Dorayaki4369\LaravelDecorator\Tests\Stubs\Targets;
 
 class ExtendedClass extends StandardClass
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dorayaki4369\Decoravel;
+namespace Dorayaki4369\LaravelDecorator;
 
 use Composer\ClassMapGenerator\ClassMapGenerator;
 use ReflectionClass;

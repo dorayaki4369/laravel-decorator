@@ -1,3 +1,3 @@
 <?php
 
-return new class extends \Dorayaki4369\Decoravel\Tests\Stubs\NotDecoratedClass {};
+return new class extends \Dorayaki4369\LaravelDecorator\Tests\Stubs\NotDecoratedClass {};

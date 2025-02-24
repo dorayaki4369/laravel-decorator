@@ -1,8 +1,8 @@
 <?php
 
-namespace Dorayaki4369\Decoravel\Tests;
+namespace Dorayaki4369\LaravelDecorator\Tests;
 
-use Dorayaki4369\Decoravel\DecoravelServiceProvider;
+use Dorayaki4369\LaravelDecorator\LaravelDecoratorServiceProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Orchestra\Testbench\TestCase as Base;
@@ -16,7 +16,7 @@ abstract class TestCase extends Base
     protected function getPackageProviders($app): array
     {
         return [
-            DecoravelServiceProvider::class,
+            LaravelDecoratorServiceProvider::class,
         ];
     }
 

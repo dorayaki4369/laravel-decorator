@@ -1,6 +1,6 @@
 <?php
 
-namespace Dorayaki4369\Decoravel\Tests\Stubs;
+namespace Dorayaki4369\LaravelDecorator\Tests\Stubs;
 
 class NotDecoratedClass
 {
