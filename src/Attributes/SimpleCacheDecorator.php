@@ -11,13 +11,6 @@ class SimpleCacheDecorator implements Decorator
 {
     /**
      * Wrap the decorated method with a simple caching mechanism.
-     *
-     * @param callable $next
-     * @param array $args
-     * @param object $instance
-     * @param string $parentClass
-     * @param string $method
-     * @return mixed
      */
     public function decorate(callable $next, array $args, object $instance, string $parentClass, string $method): mixed
     {
