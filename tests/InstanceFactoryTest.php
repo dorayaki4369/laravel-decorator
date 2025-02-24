@@ -24,7 +24,7 @@ use ReflectionException;
 use Throwable;
 
 #[CoversClass(InstanceFactory::class)]
-class InstanceFactoryTest extends TestCase
+final class InstanceFactoryTest extends TestCase
 {
     protected InstanceFactory $factory;
 

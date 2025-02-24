@@ -4,12 +4,12 @@ return new class extends \Dorayaki4369\Decoravel\Tests\Stubs\Targets\StandardCla
 {
     public function nonModifierMethod(): string
     {
-        return \Dorayaki4369\Decoravel\Facades\Decoravel::handle($this, 'nonModifierMethod');
+        return \Dorayaki4369\Decoravel\Facades\Decoravel::handle($this, __FUNCTION__, []);
     }
 
     public function publicMethod(): \Illuminate\Contracts\Foundation\Application
     {
-        return \Dorayaki4369\Decoravel\Facades\Decoravel::handle($this, 'publicMethod');
+        return \Dorayaki4369\Decoravel\Facades\Decoravel::handle($this, __FUNCTION__, []);
     }
 
     public function methodWithArgs(
@@ -32,16 +32,16 @@ return new class extends \Dorayaki4369\Decoravel\Tests\Stubs\Targets\StandardCla
         $q,
         string $r = 'default',
     ): string {
-        return \Dorayaki4369\Decoravel\Facades\Decoravel::handle($this, 'methodWithArgs', $a, $b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p, $q, $r);
+        return \Dorayaki4369\Decoravel\Facades\Decoravel::handle($this, __FUNCTION__, [$a, $b, $c, $d, $e, $f, $g, $h, $i, $j, &$k, $l, $m, $n, $o, $p, $q, $r]);
     }
 
-    public function methodWithVariableLengthArgumentLists(int ...$args): array
+    public function methodWithVariadicArgs(string $a, int ...$args): array
     {
-        return \Dorayaki4369\Decoravel\Facades\Decoravel::handle($this, 'methodWithVariableLengthArgumentLists', ...$args);
+        return \Dorayaki4369\Decoravel\Facades\Decoravel::handle($this, __FUNCTION__, [$a, ...$args]);
     }
 
-    public function methodWithRefVariableLengthArgumentLists(int &...$args): array
+    public function methodWithVariadicReferenceArgs(string $a, int &...$args): array
     {
-        return \Dorayaki4369\Decoravel\Facades\Decoravel::handle($this, 'methodWithRefVariableLengthArgumentLists', ...$args);
+        return \Dorayaki4369\Decoravel\Facades\Decoravel::handle($this, __FUNCTION__, [$a, ...$args]);
     }
 };

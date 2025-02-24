@@ -11,7 +11,7 @@ use JsonSerializable;
 class StandardClass
 {
     #[StubLogDecorator]
-    public function nonModifierMethod(): string
+    function nonModifierMethod(): string
     {
         return self::class;
     }
@@ -43,18 +43,24 @@ class StandardClass
         $q,
         string $r = 'default',
     ): string {
+        $k += 1;
+
         return self::class;
     }
 
     #[StubLogDecorator]
-    public function methodWithVariableLengthArgumentLists(int ...$args): array
+    public function methodWithVariadicArgs(string $a, int ...$args): array
     {
         return $args;
     }
 
     #[StubLogDecorator]
-    public function methodWithRefVariableLengthArgumentLists(int &...$args): array
+    public function methodWithVariadicReferenceArgs(string $a, int &...$args): array
     {
+        foreach ($args as &$arg) {
+            $arg += 1;
+        }
+
         return $args;
     }
 

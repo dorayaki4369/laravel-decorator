@@ -3,6 +3,7 @@
 namespace Dorayaki4369\Decoravel;
 
 use Composer\ClassMapGenerator\ClassMapGenerator;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use ReflectionClass;
 use ReflectionException;
 use Symfony\Component\Finder\Finder;
@@ -69,6 +70,7 @@ readonly class Decoravel
      * @return T
      *
      * @throws ReflectionException
+     * @throws BindingResolutionException
      */
     public function decorate(string $class): mixed
     {
@@ -76,13 +78,11 @@ readonly class Decoravel
     }
 
     /**
-     * @param  object|class-string  $instance
-     * @param  mixed  ...$args
-     *
+     * @throws DecoravelException
      * @throws ReflectionException
      */
-    public function handle(object|string $instance, string $method, array ...$args): mixed
+    public function handle(object $instance, string $method, array $args): mixed
     {
-        return $this->handler->handle($instance, $method, ...$args);
+        return $this->handler->handle($instance, $method, $args);
     }
 }

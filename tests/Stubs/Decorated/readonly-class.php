@@ -4,6 +4,6 @@ return new readonly class extends \Dorayaki4369\Decoravel\Tests\Stubs\Targets\Re
 {
     public function handle(): string
     {
-        return \Dorayaki4369\Decoravel\Facades\Decoravel::handle($this, 'handle');
+        return \Dorayaki4369\Decoravel\Facades\Decoravel::handle($this, __FUNCTION__, []);
     }
 };
