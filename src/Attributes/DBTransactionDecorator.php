@@ -11,12 +11,8 @@ class DBTransactionDecorator implements Decorator
     /**
      * Wrap the decorated method with a database transaction.
      *
-     * @param callable(array $args, object $instance, string $parentClass, string $method): mixed  $next
-     * @param array $args
-     * @param object $instance
-     * @param string $parentClass
-     * @param string $method
-     * @return mixed
+     * @param  callable(array $args, object $instance, string $parentClass, string $method): mixed  $next
+     *
      * @throws Throwable
      */
     public function decorate(callable $next, array $args, object $instance, string $parentClass, string $method): mixed

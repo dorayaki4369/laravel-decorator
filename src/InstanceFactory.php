@@ -23,13 +23,12 @@ readonly class InstanceFactory
 {
     public function __construct(
         protected BuilderFactory $factory,
-    )
-    {
-    }
+    ) {}
 
     /**
      * @template T
-     * @param class-string<T> $class
+     *
+     * @param  class-string<T>  $class
      *
      * @throws BindingResolutionException
      * @throws ReflectionException
@@ -38,7 +37,7 @@ readonly class InstanceFactory
     {
         $ref = new ReflectionClass($class);
 
-        if (!isDecoratableClass($ref)) {
+        if (! isDecoratableClass($ref)) {
             return app($class);
         }
 
@@ -48,7 +47,7 @@ readonly class InstanceFactory
     }
 
     /**
-     * @param class-string $class
+     * @param  class-string  $class
      *
      * @throws ReflectionException
      */
@@ -162,10 +161,10 @@ readonly class InstanceFactory
     protected function createDecoratedMethods(ReflectionClass $ref): array
     {
         return array_map(
-        /**
-         * @throws ReflectionException
-         */
-            fn(ReflectionMethod $method) => $this->createDecoratedMethod($method),
+            /**
+             * @throws ReflectionException
+             */
+            fn (ReflectionMethod $method) => $this->createDecoratedMethod($method),
             getDecoratedMethods($ref),
         );
     }
@@ -204,7 +203,7 @@ readonly class InstanceFactory
     }
 
     /**
-     * @param ReflectionParameter[] $params
+     * @param  ReflectionParameter[]  $params
      * @return Node\Param[]
      *
      * @throws ReflectionException
@@ -260,7 +259,7 @@ readonly class InstanceFactory
 
         if ($ref->isBuiltin()) {
             if ($name !== 'mixed') {
-                $name = $ref->allowsNull() ? '?' . $name : $name;
+                $name = $ref->allowsNull() ? '?'.$name : $name;
             }
 
             return new Node\Identifier($name);
@@ -271,7 +270,7 @@ readonly class InstanceFactory
 
     protected function createCompositeType(ReflectionIntersectionType|ReflectionUnionType $ref): Node\IntersectionType|Node\UnionType
     {
-        $types = array_map(fn(ReflectionType $t) => $this->createTypeNode($t), $ref->getTypes());
+        $types = array_map(fn (ReflectionType $t) => $this->createTypeNode($t), $ref->getTypes());
 
         if ($ref instanceof ReflectionIntersectionType) {
             return new Node\IntersectionType($types);
@@ -284,7 +283,7 @@ readonly class InstanceFactory
     {
         $args = [
             new Node\Arg(new Node\Expr\Variable('this')),
-            new Node\Arg(new Node\Scalar\MagicConst\Function_()),
+            new Node\Arg(new Node\Scalar\MagicConst\Function_),
         ];
 
         $parameters = $ref->getParameters();

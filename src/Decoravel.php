@@ -2,11 +2,8 @@
 
 namespace Dorayaki4369\Decoravel;
 
-use Composer\ClassMapGenerator\ClassMapGenerator;
 use Illuminate\Contracts\Container\BindingResolutionException;
-use ReflectionClass;
 use ReflectionException;
-use Symfony\Component\Finder\Finder;
 
 readonly class Decoravel
 {
@@ -17,6 +14,8 @@ readonly class Decoravel
     ) {}
 
     /**
+     * Scan classes that are decorated by Decoravel.
+     *
      * @return class-string[]
      */
     public function scanDecoratedClasses(): array

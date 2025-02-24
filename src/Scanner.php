@@ -10,6 +10,10 @@ use Symfony\Component\Finder\Finder;
 class Scanner
 {
     /**
+     * Scan decorated classes in the specified directories.
+     *
+     * The directories are specified in the `decoravel.scan_directories` configuration.
+     *
      * @return class-string[]
      */
     public function scanDecoratedClasses(): array
@@ -20,7 +24,7 @@ class Scanner
             try {
                 $ref = new ReflectionClass($class);
 
-                if (!isDecoratableClass($ref)) {
+                if (! isDecoratableClass($ref)) {
                     return null;
                 }
 

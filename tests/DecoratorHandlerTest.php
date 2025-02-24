@@ -36,15 +36,15 @@ final class DecoratorHandlerTest extends TestCase
     public static function dataProvider(): Generator
     {
         /** @var StandardClass $obj */
-        $obj = require __DIR__ . '/Stubs/Decorated/standard-class.php';
+        $obj = require __DIR__.'/Stubs/Decorated/standard-class.php';
 
         yield 'nonModifierMethod' => [
             function () use ($obj) {
                 $result = $obj->nonModifierMethod();
                 $this->assertSame(StandardClass::class, $result);
             },
-            StandardClass::class . '::nonModifierMethod is called',
-            StandardClass::class . '::nonModifierMethod is finished',
+            StandardClass::class.'::nonModifierMethod is called',
+            StandardClass::class.'::nonModifierMethod is finished',
         ];
 
         yield 'publicMethod' => [
@@ -52,8 +52,8 @@ final class DecoratorHandlerTest extends TestCase
                 $result = $obj->publicMethod();
                 $this->assertInstanceOf(Application::class, $result);
             },
-            StandardClass::class . '::publicMethod is called',
-            StandardClass::class . '::publicMethod is finished',
+            StandardClass::class.'::publicMethod is called',
+            StandardClass::class.'::publicMethod is finished',
         ];
 
         yield 'methodWithArgs' => [
@@ -66,7 +66,7 @@ final class DecoratorHandlerTest extends TestCase
                     true,
                     [],
                     new stdClass,
-                    fn() => null,
+                    fn () => null,
                     [],
                     null,
                     app(),
@@ -81,8 +81,8 @@ final class DecoratorHandlerTest extends TestCase
                 $this->assertSame(StandardClass::class, $result);
                 $this->assertSame(3, $k);
             },
-            StandardClass::class . '::methodWithArgs is called',
-            StandardClass::class . '::methodWithArgs is finished',
+            StandardClass::class.'::methodWithArgs is called',
+            StandardClass::class.'::methodWithArgs is finished',
         ];
 
         yield 'methodWithVariadicArgs' => [
@@ -90,8 +90,8 @@ final class DecoratorHandlerTest extends TestCase
                 $result = $obj->methodWithVariadicArgs('string', 1, 2, 3);
                 $this->assertSame([1, 2, 3], $result);
             },
-            StandardClass::class . '::methodWithVariadicArgs is called',
-            StandardClass::class . '::methodWithVariadicArgs is finished',
+            StandardClass::class.'::methodWithVariadicArgs is called',
+            StandardClass::class.'::methodWithVariadicArgs is finished',
         ];
 
         yield 'methodWithVariadicReferenceArgs' => [
@@ -100,38 +100,38 @@ final class DecoratorHandlerTest extends TestCase
                 $result = $obj->methodWithVariadicReferenceArgs('string', $a[0], $a[1], $a[2]);
                 $this->assertSame([2, 3, 4], $result);
             },
-            StandardClass::class . '::methodWithVariadicReferenceArgs is called',
-            StandardClass::class . '::methodWithVariadicReferenceArgs is finished',
+            StandardClass::class.'::methodWithVariadicReferenceArgs is called',
+            StandardClass::class.'::methodWithVariadicReferenceArgs is finished',
         ];
     }
 
     public function test_handle_extended_class(): void
     {
         /** @var ExtendedClass $obj */
-        $obj = require __DIR__ . '/Stubs/Decorated/extended-class.php';
+        $obj = require __DIR__.'/Stubs/Decorated/extended-class.php';
 
         $this->assertStubLogDecorator(
             function () use ($obj) {
                 $result = $obj->nonModifierMethod();
                 $this->assertSame(StandardClass::class, $result);
             },
-            ExtendedClass::class . '::nonModifierMethod is called',
-            ExtendedClass::class . '::nonModifierMethod is finished',
+            ExtendedClass::class.'::nonModifierMethod is called',
+            ExtendedClass::class.'::nonModifierMethod is finished',
         );
     }
 
     public function test_handle_injection_required_class(): void
     {
         /** @var InjectionRequiredClass $obj */
-        $obj = require __DIR__ . '/Stubs/Decorated/injection-required-class.php';
+        $obj = require __DIR__.'/Stubs/Decorated/injection-required-class.php';
 
         $this->assertStubLogDecorator(
             function () use ($obj) {
                 $result = $obj->handle();
                 $this->assertSame(InjectionRequiredClass::class, $result);
             },
-            InjectionRequiredClass::class . '::handle is called',
-            InjectionRequiredClass::class . '::handle is finished',
+            InjectionRequiredClass::class.'::handle is called',
+            InjectionRequiredClass::class.'::handle is finished',
         );
     }
 
@@ -142,15 +142,15 @@ final class DecoratorHandlerTest extends TestCase
         }
 
         /** @var ReadonlyClass $obj */
-        $obj = require __DIR__ . '/Stubs/Decorated/readonly-class.php';
+        $obj = require __DIR__.'/Stubs/Decorated/readonly-class.php';
 
         $this->assertStubLogDecorator(
             function () use ($obj) {
                 $result = $obj->handle();
                 $this->assertSame(ReadonlyClass::class, $result);
             },
-            ReadonlyClass::class . '::handle is called',
-            ReadonlyClass::class . '::handle is finished',
+            ReadonlyClass::class.'::handle is called',
+            ReadonlyClass::class.'::handle is finished',
         );
     }
 

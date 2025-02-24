@@ -12,10 +12,19 @@ class ValidationDecorator implements Decorator
         protected array $rules,
         protected array $messages = [],
         protected array $attributes = [],
-    )
-    {
-    }
+    ) {}
 
+    /**
+     * Wrap the decorated method with a validator.
+     *
+     * @param callable $next
+     * @param array $args
+     * @param object $instance
+     * @param string $parentClass
+     * @param string $method
+     * @return mixed
+     * @throws ValidationException
+     */
     public function decorate(callable $next, array $args, object $instance, string $parentClass, string $method): mixed
     {
         $validator = Validator::make($args, $this->rules, $this->messages, $this->attributes);

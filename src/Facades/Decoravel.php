@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 use RuntimeException;
 
 /**
- * @method static string[] scanDecoratableClasses()
+ * @method static string[] scanDecoratedClasses()
  * @method static mixed decorate(string $class)
  * @method static mixed handle(object $instance, string $method, array $args)
  */

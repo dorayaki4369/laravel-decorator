@@ -7,7 +7,7 @@ use Dorayaki4369\Decoravel\Facades\Decoravel as Facade;
 
 class FacadeTest extends TestCase
 {
-    public function testBinding(): void
+    public function test_binding(): void
     {
         $this->assertInstanceOf(Decoravel::class, Facade::getFacadeRoot());
     }

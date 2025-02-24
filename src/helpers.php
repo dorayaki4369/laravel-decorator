@@ -3,6 +3,8 @@
 use Dorayaki4369\Decoravel\Contracts\Attributes\Decorator;
 
 /**
+ * Find all decorated methods in the given class.
+ *
  * @return ReflectionMethod[]
  */
 function getDecoratedMethods(ReflectionClass $ref): array
@@ -11,6 +13,8 @@ function getDecoratedMethods(ReflectionClass $ref): array
 }
 
 /**
+ * Check if the given method is decorated.
+ *
  * @throws ReflectionException
  */
 function isDecoratedMethod(ReflectionMethod $ref): bool
@@ -19,6 +23,10 @@ function isDecoratedMethod(ReflectionMethod $ref): bool
 }
 
 /**
+ * Get all decorator attributes of the given method.
+ *
+ * The attributes of the ancestor classes will also be included.
+ *
  * @return ReflectionAttribute<Decorator>[]
  *
  * @throws ReflectionException
@@ -42,6 +50,9 @@ function getDecoratorAttributes(ReflectionMethod $ref): array
     return $attrs;
 }
 
+/**
+ * Check if the given class is decoratable.
+ */
 function isDecoratableClass(ReflectionClass $ref): bool
 {
     $result = ! $ref->isAbstract() && ! $ref->isInterface() && ! $ref->isTrait() && ! $ref->isFinal();
@@ -57,6 +68,9 @@ function isDecoratableClass(ReflectionClass $ref): bool
     return true;
 }
 
+/**
+ * Check if the given method is decoratable.
+ */
 function isDecoratableMethod(ReflectionMethod $ref): bool
 {
     return $ref->isPublic() && ! $ref->isStatic() && ! $ref->isFinal() && ! $ref->isConstructor() && ! $ref->isDestructor();

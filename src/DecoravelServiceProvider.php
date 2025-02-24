@@ -7,6 +7,9 @@ use Illuminate\Support\ServiceProvider;
 
 class DecoravelServiceProvider extends ServiceProvider
 {
+    /**
+     * Register any application services.
+     */
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/decoravel.php', 'decoravel');
@@ -14,15 +17,21 @@ class DecoravelServiceProvider extends ServiceProvider
         $this->app->singleton(DecoravelFacade::class, Decoravel::class);
     }
 
+    /**
+     * Bootstrap any application services.
+     */
     public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->bootInConsole();
         }
 
-        $this->bindDecoratables();
+        $this->bindDecoratedClasses();
     }
 
+    /**
+     * Only booting in console.
+     */
     protected function bootInConsole(): void
     {
         $this->publishes(
@@ -33,7 +42,7 @@ class DecoravelServiceProvider extends ServiceProvider
         );
     }
 
-    protected function bindDecoratables(): void
+    protected function bindDecoratedClasses(): void
     {
         foreach (DecoravelFacade::scanDecoratedClasses() as $class) {
             $this->app->bind($class, fn () => DecoravelFacade::decorate($class));

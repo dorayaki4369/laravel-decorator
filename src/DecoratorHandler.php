@@ -11,6 +11,8 @@ use ReflectionMethod;
 readonly class DecoratorHandler
 {
     /**
+     * Run the decorated method.
+     *
      * @throws DecoravelException
      * @throws ReflectionException
      */
@@ -39,6 +41,9 @@ readonly class DecoratorHandler
         return $fn($args, $instance, $parent->getName(), $method);
     }
 
+    /**
+     * Make a callable that invokes the parent method.
+     */
     protected function makeParentMethodInvoker(ReflectionMethod $ref, array $args): callable
     {
         $params = $ref->getParameters();
