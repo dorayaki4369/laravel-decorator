@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/decoravel.iml" filepath="$PROJECT_DIR$/.idea/decoravel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/laravel-decorator.iml" filepath="$PROJECT_DIR$/.idea/laravel-decorator.iml" />
     </modules>
   </component>
 </project>

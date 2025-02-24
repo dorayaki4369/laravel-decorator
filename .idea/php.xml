@@ -168,7 +168,9 @@
       <path value="$PROJECT_DIR$/vendor/orchestra/sidekick" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.3">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
   <component name="PhpStan">
     <PhpStan_settings>
       <phpstan_by_interpreter asDefaultInterpreter="true" interpreter_id="2b00f5e7-0827-45a1-9aad-0c3e1d71669d" timeout="60000" />
