@@ -2,10 +2,12 @@
 
 namespace Dorayaki4369\LaravelDecorator\Attributes;
 
+use Attribute;
 use Dorayaki4369\LaravelDecorator\Contracts\Attributes\Decorator;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
+#[Attribute(Attribute::TARGET_METHOD)]
 class ValidationDecorator implements Decorator
 {
     public function __construct(
