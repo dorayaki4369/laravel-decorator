@@ -3,9 +3,13 @@
   "description": "The decorator package for Laravel",
   "license": "MIT",
   "type": "library",
+  "tags": [
+    "laravel",
+    "decorator"
+  ],
   "authors": [
     {
-      "name": "dorayaki4369",
+      "name": "Ryuya Hirayama",
       "email": "dorayaki4369@outlook.jp"
     }
   ],
@@ -39,7 +43,8 @@
   "config": {
     "allow-plugins": {
       "ergebnis/composer-normalize": true
-    }
+    },
+    "sort-packages": true
   },
   "scripts": {
     "post-install-cmd": [
