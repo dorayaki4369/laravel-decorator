@@ -47,5 +47,12 @@
     ],
     "format": "pint",
     "test": "phpunit"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Dorayaki4369\\LaravelDecorator\\LaravelDecoratorServiceProvider"
+      ]
+    }
   }
 }
