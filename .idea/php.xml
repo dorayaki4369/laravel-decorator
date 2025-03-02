@@ -13,7 +13,7 @@
   </component>
   <component name="MessDetector">
     <phpmd_settings>
-      <phpmd_by_interpreter asDefaultInterpreter="true" interpreter_id="48f93385-3d4d-415a-8432-0ed7e9d72453" timeout="30000" />
+      <phpmd_by_interpreter asDefaultInterpreter="true" interpreter_id="ab9b2327-df41-45b0-81bd-717ed3eb0af5" timeout="30000" />
     </phpmd_settings>
   </component>
   <component name="MessDetectorOptionsConfiguration">
@@ -33,7 +33,7 @@
   </component>
   <component name="PhpCodeSniffer">
     <phpcs_settings>
-      <phpcs_by_interpreter asDefaultInterpreter="true" interpreter_id="48f93385-3d4d-415a-8432-0ed7e9d72453" timeout="30000" />
+      <phpcs_by_interpreter asDefaultInterpreter="true" interpreter_id="ab9b2327-df41-45b0-81bd-717ed3eb0af5" timeout="30000" />
     </phpcs_settings>
   </component>
   <component name="PhpIncludePathManager">
@@ -168,7 +168,7 @@
       <path value="$PROJECT_DIR$/vendor/orchestra/sidekick" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.3">
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.2">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />
   </component>
   <component name="PhpStan">
