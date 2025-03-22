@@ -24,7 +24,7 @@ namespace App\Attributes;
 
 use Dorayaki4369\LaravelDecorator\Contracts\Attributes\Decorator;
 
-class LogDecorator extends Decorator
+class LogDecorator implements Decorator
 {
     public function decorate(callable $next, array $args, object $instance, string $parentClass, string $method): mixed
     {
